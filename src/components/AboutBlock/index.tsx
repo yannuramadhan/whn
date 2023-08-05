@@ -3,17 +3,16 @@ import { withTranslation } from "react-i18next";
 import { Slide } from "react-awesome-reveal";
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
-import { MiddleBlockSection, Content, ContentWrapper } from "./styles";
+import { AboutSection, Content, ContentWrapper } from "./styles";
 
-interface MiddleBlockProps {
+interface AboutProps {
   title: string;
   content: string;
   t: any;
   id: string;
-  icon: string;
 }
 
-const MiddleBlock = ({ title, content, t , id, icon}: MiddleBlockProps) => {
+const About = ({ title, content, t , id}: AboutProps) => {
   const scrollTo = (id: string) => {
     const element = document.getElementById(id) as HTMLDivElement;
     element.scrollIntoView({
@@ -21,9 +20,9 @@ const MiddleBlock = ({ title, content, t , id, icon}: MiddleBlockProps) => {
     });
   };
   return (
-    <MiddleBlockSection>
+    <AboutSection>
       <Slide direction="up">
-        <Row id={id}>
+        <Row justify="center" align="middle" id={id}>
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>
               <h6>{t(title)}</h6>
@@ -31,12 +30,9 @@ const MiddleBlock = ({ title, content, t , id, icon}: MiddleBlockProps) => {
             </Col>
           </ContentWrapper>
         </Row>
-        <Row justify="center" align="middle" >
-          <SvgIcon src={icon} width="800px" height="550px" />
-        </Row>
       </Slide>
-    </MiddleBlockSection>
+    </AboutSection>
   );
 };
 
-export default withTranslation()(MiddleBlock);
+export default withTranslation()(About);

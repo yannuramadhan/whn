@@ -1,0 +1,26 @@
+{
+  "title": "Goals",
+  "text": "",
+  "section": [
+    {
+      "title": "Focus",
+      "content": "Become a local company that focuses on providing Contact Center Applications for Medium Enterprise PABX in all customer service segments",
+      "icon": "1.png"
+    },
+    {
+      "title": "Inovatif",
+      "content": "Creating application solution products for office and customer service needs.",
+      "icon": "2.png"
+    },
+    {
+      "title": "Value-Added",
+      "content": "Become a System Integrator Company with value added Applications to support the company's PABX in all segments.",
+      "icon": "3.png"
+    },
+    {
+      "title": "Services",
+      "content": "Become a national installation and maintenance service company",
+      "icon": "4.png"
+    }
+  ]
+}

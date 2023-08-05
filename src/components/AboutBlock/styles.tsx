@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const MiddleBlockSection = styled("section")`
+export const AboutSection = styled("section")`
   position: relative;
-  padding: 5rem 0 5rem;
-  text-align: left;
+  padding: 3rem 0 3rem;
+  text-align: center;
   display: flex;
   justify-content: center;
 

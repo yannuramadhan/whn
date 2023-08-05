@@ -1,12 +1,15 @@
 import { lazy } from "react";
-import IntroContent from "../../content/IntroContent.json";
-import MiddleBlockContent from "../../content/MiddleBlockContent.json";
-import AboutContent from "../../content/AboutContent.json";
+import Intro from "../../content/Intro.json";
+import About from "../../content/About.json";
+import Goals from "../../content/Goals.json";
+import Bisnis from "../../content/Bisnis.json";
 import MissionContent from "../../content/MissionContent.json";
-import ProductContent from "../../content/ProductContent.json";
+import Product from "../../content/Product.json";
 import ContactContent from "../../content/ContactContent.json";
+import ReleaseContent from "../../content/ReleaseContent.json";
 
 const Contact = lazy(() => import("../../components/ContactForm"));
+const AboutBlock = lazy(() => import("../../components/AboutBlock"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
@@ -18,24 +21,37 @@ const Home = () => {
       <ScrollToTop />
       <ContentBlock
         type="right"
-        title={IntroContent.title}
-        content={IntroContent.text}
-        button={IntroContent.button}
-        icon="developer.svg"
+        title={Intro.title}
+        content={Intro.text}
+        icon="developer.png"
         id="intro"
       />
-      <MiddleBlock
-        title={MiddleBlockContent.title}
-        content={MiddleBlockContent.text}
-        button={MiddleBlockContent.button}
+      <AboutBlock
+        title={About.title}
+        content={About.text}
+        id="about"
       />
       <ContentBlock
         type="left"
-        title={AboutContent.title}
-        content={AboutContent.text}
-        section={AboutContent.section}
+        title={Goals.title}
+        content={Goals.text}
+        section={Goals.section}
         icon="graphs.svg"
-        id="about"
+        id="goals"
+      />
+      <MiddleBlock
+        title={Bisnis.title}
+        content={Bisnis.text}
+        icon="bisnis.png"
+        id="bisnis"
+      />
+      {/* <ContentBlock
+        type="left"
+        title={ReleaseContent.title}
+        content={ReleaseContent.text}
+        section={ReleaseContent.section}
+        icon="graphs.svg"
+        id="release"
       />
       <ContentBlock
         type="right"
@@ -43,12 +59,12 @@ const Home = () => {
         content={MissionContent.text}
         icon="product-launch.svg"
         id="mission"
-      />
+      /> */}
       <ContentBlock
         type="left"
-        title={ProductContent.title}
-        content={ProductContent.text}
-        icon="waving.svg"
+        title={Product.title}
+        content={Product.text}
+        icon="product.png"
         id="product"
       />
       <Contact

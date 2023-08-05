@@ -37,15 +37,19 @@ const Header = ({ t }: any) => {
     };
     return (
       <>
+        
         <CustomNavLinkSmall onClick={() => scrollTo("about")}>
           <Span>{t("About")}</Span>
         </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("mission")}>
-          <Span>{t("Mission")}</Span>
-        </CustomNavLinkSmall>
+        {/* <CustomNavLinkSmall onClick={() => scrollTo("goals")}>
+          <Span>{t("Goals")}</Span>
+        </CustomNavLinkSmall> */}
         <CustomNavLinkSmall onClick={() => scrollTo("product")}>
           <Span>{t("Product")}</Span>
         </CustomNavLinkSmall>
+        {/* <CustomNavLinkSmall onClick={() => scrollTo("release")}>
+          <Span>{t("Release")}</Span>
+        </CustomNavLinkSmall> */}
         <CustomNavLinkSmall
           style={{ width: "180px" }}
           onClick={() => scrollTo("contact")}
@@ -63,7 +67,7 @@ const Header = ({ t }: any) => {
       <Container>
         <Row justify="space-between">
           <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="101px" height="64px" />
+            <SvgIcon src="logo.png" width="" height="64px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />

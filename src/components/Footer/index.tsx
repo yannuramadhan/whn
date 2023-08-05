@@ -52,76 +52,70 @@ const Footer = ({ t }: any) => {
           <Row justify="space-between">
             <Col lg={10} md={10} sm={12} xs={12}>
               <Language>{t("Contact")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
+              {/* <Large to="/">{t("Tell us everything")}</Large> */}
               <Para>
-                {t(`Do you have any question? Feel free to reach out.`)}
+                {t(`Ruko Cempaka Mas Blok A5, Sumur Batu, Kemayoran, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10640 `)}
               </Para>
-              <a href="mailto:l.qqbadze@gmail.com">
+              <Para>
+                {t(`+6221 4228400`)}
+              </Para>
+              <Para>
+                {t(`support@whnmandiri.co.id `)}
+              </Para>
+              <Empty />
+              <Para>
+              <FooterContainer>
+              <SocialLink
+                href="https://facebook.com"
+                src="github.svg"
+              />
+              <SocialLink
+                href="https://twitter.com"
+                src="twitter.svg"
+              />
+              <SocialLink
+                href="https://www.linkedin.com"
+                src="linkedin.svg"
+              />
+              <SocialLink
+                href="https://instagram.com"
+                src="instagram.svg"
+              />
+              </FooterContainer>
+              {/* <a href="mailto:support@whnmandiri.co.id">
                 <Chat>{t(`Let's Chat`)}</Chat>
-              </a>
+              </a> */}
+              </Para>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Policy")}</Title>
+              <Title>{t("Latest Update")}</Title>
               <Large to="/" left="true">
-                {t("Application Security")}
+                {t("Order Monitoring System v.2.3")}
               </Large>
               <Large left="true" to="/">
-                {t("Software Principles")}
+                {t("Smart Recording v.1.2")}
+              </Large>
+              <Large left="true" to="/">
+                {t("Office Automation v.b1.1")}
+              </Large>
+              <Large left="true" to="/">
+                {t("Smart Helpdesk v.3.5")}
               </Large>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <Empty />
-              <Large left="true" to="/">
-                {t("Support Center")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Customer Support")}
-              </Large>
-            </Col>
-          </Row>
-          <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Empty />
-              <Language>{t("Address")}</Language>
-              <Para>Rancho Santa Margarita</Para>
-              <Para>2131 Elk Street</Para>
-              <Para>California</Para>
-            </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{t("Company")}</Title>
               <Large left="true" to="/">
-                {t("About")}
+                {t("Company 1")}
               </Large>
               <Large left="true" to="/">
-                {t("Blog")}
+                {t("Company 2")}
               </Large>
               <Large left="true" to="/">
-                {t("Press")}
+                {t("Company 3")}
               </Large>
               <Large left="true" to="/">
-                {t("Careers & Culture")}
+                {t("Company 4")}
               </Large>
-            </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Label htmlFor="select-lang">{t("Language")}</Label>
-              <LanguageSwitchContainer>
-                <LanguageSwitch onClick={() => handleChange("en")}>
-                  <SvgIcon
-                    src="united-states.svg"
-                    aria-label="homepage"
-                    width="30px"
-                    height="30px"
-                  />
-                </LanguageSwitch>
-                <LanguageSwitch onClick={() => handleChange("es")}>
-                  <SvgIcon
-                    src="spain.svg"
-                    aria-label="homepage"
-                    width="30px"
-                    height="30px"
-                  />
-                </LanguageSwitch>
-              </LanguageSwitchContainer>
             </Col>
           </Row>
         </Container>
@@ -135,38 +129,10 @@ const Footer = ({ t }: any) => {
           >
             <NavLink to="/">
               <LogoContainer>
-                <SvgIcon
-                  src="logo.svg"
-                  aria-label="homepage"
-                  width="101px"
-                  height="64px"
-                />
+                © 2023 Whnmandiri.co.id
               </LogoContainer>
             </NavLink>
-            <FooterContainer>
-              <SocialLink
-                href="https://github.com/Adrinlol/create-react-app-adrinlol"
-                src="github.svg"
-              />
-              <SocialLink
-                href="https://twitter.com/Adrinlolx"
-                src="twitter.svg"
-              />
-              <SocialLink
-                href="https://www.linkedin.com/in/lasha-kakabadze/"
-                src="linkedin.svg"
-              />
-              <SocialLink
-                href="https://medium.com/@lashakakabadze/"
-                src="medium.svg"
-              />
-              <a href="https://www.buymeacoffee.com/adrinlol">
-                <img
-                  src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=adrinlol&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"
-                  alt="Buy me a pizza"
-                />
-              </a>
-            </FooterContainer>
+            
           </Row>
         </Container>
       </Extra>
