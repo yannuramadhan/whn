@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
+import { HashLink } from 'react-router-hash-link';
 import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
 import {
@@ -37,25 +38,25 @@ const Header = ({ t }: any) => {
     };
     return (
       <>
-        
-        <CustomNavLinkSmall onClick={() => scrollTo("about")}>
-          <Span>{t("About")}</Span>
+        <CustomNavLinkSmall >
+        <HashLink smooth to="/#about"><Span>{t("About")}</Span></HashLink>
         </CustomNavLinkSmall>
-        {/* <CustomNavLinkSmall onClick={() => scrollTo("goals")}>
-          <Span>{t("Goals")}</Span>
-        </CustomNavLinkSmall> */}
-        <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Product")}</Span>
+        <CustomNavLinkSmall>
+        <HashLink smooth to="/#product"><Span>{t("Product")}</Span></HashLink>
         </CustomNavLinkSmall>
-        {/* <CustomNavLinkSmall onClick={() => scrollTo("release")}>
-          <Span>{t("Release")}</Span>
-        </CustomNavLinkSmall> */}
+        <CustomNavLinkSmall>
+        <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
+        </CustomNavLinkSmall>
+        <CustomNavLinkSmall>
+        <HashLink smooth to="/#ourcustomers"><Span>{t("Our Customers")}</Span></HashLink>
+        </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
         >
           <Span>
-            <Button>{t("Contact")}</Button>
+            <HashLink smooth to="/#contact">
+              <Button>{t("Contact")}</Button>
+            </HashLink> 
           </Span>
         </CustomNavLinkSmall>
       </>

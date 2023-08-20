@@ -4,6 +4,10 @@ import { MenuOutlined } from "@ant-design/icons";
 
 export const HeaderSection = styled("header")`
   padding: 1rem 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: aliceblue;
 
   .ant-row-space-between {
     align-items: center;
@@ -21,7 +25,7 @@ export const NavLink = styled("div")`
 `;
 
 export const CustomNavLink = styled("div")`
-  width: 203px;
+  width: 150px;
   display: inline-block;
 
   @media only screen and (max-width: 411px) {
@@ -70,7 +74,7 @@ export const CustomNavLinkSmall = styled(NavLink)`
   font-size: 1.2rem;
   color: #18216d;
   transition: color 0.2s ease-in;
-  margin: 0.5rem 2rem;
+  margin: 0.5rem 1.5rem;
 
   @media only screen and (max-width: 768px) {
     margin: 1.25rem 2rem;
@@ -87,7 +91,7 @@ export const Label = styled("span")`
 `;
 
 export const Outline = styled(MenuOutlined)<any>`
-  font-size: 22px;
+  font-size: 20px;
 `;
 
 export const Span = styled("span")`

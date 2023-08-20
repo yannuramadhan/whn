@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const FooterSection = styled("footer")`
   background: rgb(241, 242, 243);
-  padding: 2.5rem 0;
+  padding: 1.5rem 0 0;
 `;
 
 export const Title = styled("h4")`
@@ -19,7 +19,7 @@ export const Title = styled("h4")`
 export const NavLink = styled(Link)`
   display: block;
   font-size: 1rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
   transition: all 0.2s ease-in-out;
 
   &:hover,

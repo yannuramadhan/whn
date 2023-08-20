@@ -1,0 +1,133 @@
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+
+const IndicatorWrapper = styled.div`
+  display: flex;
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  @media (max-width: 768px) {
+    bottom: 5px; // Ubah posisi indikator untuk layar kecil
+  }
+`;
+
+const Dot = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  opacity: ${(props) => (props.isActive ? 1 : 0.5)};
+  margin: 5px;
+  transition: 750ms all ease-in-out;
+  @media (max-width: 768px) {
+    width: 8px; // Ubah ukuran dot untuk layar kecil
+    height: 8px;
+    margin: 3px;
+  }
+`;
+
+const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
+  return (
+    <IndicatorWrapper>
+      {Array(amountSlides)
+        .fill(1)
+        .map((_, i) => (
+          <Dot
+            key={i}
+            isActive={currentSlide === i}
+            onClick={() => nextSlide(i)}
+          />
+        ))}
+    </IndicatorWrapper>
+  );
+};
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  height: 82.5vh;
+  width: 100vw;
+  @media (max-width: 768px) {
+    height: 30vh; // Ubah tinggi slider untuk layar kecil
+    width: 100vw;
+  }
+`;
+
+const Slide = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  background-position: center;
+  background-size: cover;
+  transition: 750ms all ease-in-out;
+  @media (max-width: 768px) {
+    flex-shrink: 0;
+    width: 100%; // Pengaturan ulang lebar slide untuk layar kecil
+  }
+`;
+
+const ChildrenWrapper = styled.div`
+  position: relative;
+  top: 100%;
+  left: 100%;
+  transform: translate(-100%, -100%);
+`;
+
+const Gradient = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+`;
+
+const ImageSlider = ({
+  images = [],
+  autoPlay = true,
+  autoPlayTime = 3000,
+  children,
+  ...props
+}) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  function nextSlide(slideIndex = currentSlide + 1) {
+    const newSlideIndex = slideIndex >= images.length ? 0 : slideIndex;
+
+    setCurrentSlide(newSlideIndex);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      nextSlide();
+    }, autoPlayTime);
+
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
+
+  return (
+    <Wrapper>
+      {images.map((imageUrl, index) => (
+        <Slide
+          key={index}
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
+            backgroundSize: 'cover', // Ubah ukuran gambar untuk responsif
+          }}
+        ></Slide>
+      ))}
+      <Gradient />
+      <Indicator
+        currentSlide={currentSlide}
+        amountSlides={images.length}
+        nextSlide={nextSlide}
+      />
+      <ChildrenWrapper>{children}</ChildrenWrapper>
+    </Wrapper>
+  );
+};
+
+export default ImageSlider;

@@ -24,6 +24,13 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
     );
   };
 
+  const subject = encodeURIComponent("Contact Form Submission");
+  const body = encodeURIComponent(
+    `Name: ${values.name}\nEmail: ${values.email}\nMessage: ${values.message}`
+  );
+
+  const mailtoLink = `mailto:yannu.ramadhan@gmail.com?subject=${subject}&body=${body}`;
+
   return (
     <ContactContainer id={id}>
       <Row justify="space-between" align="middle">
@@ -65,7 +72,9 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                 <ValidationType type="message" />
               </Col>
               <ButtonContainer>
-                <Button name="submit">{t("Submit")}</Button>
+                <a href={mailtoLink}>
+                  <Button name="submit">{t("Submit")}</Button>
+                </a>
               </ButtonContainer>
             </FormGroup>
           </Slide>

@@ -64,24 +64,7 @@ const Footer = ({ t }: any) => {
               </Para>
               <Empty />
               <Para>
-              <FooterContainer>
-              <SocialLink
-                href="https://facebook.com"
-                src="github.svg"
-              />
-              <SocialLink
-                href="https://twitter.com"
-                src="twitter.svg"
-              />
-              <SocialLink
-                href="https://www.linkedin.com"
-                src="linkedin.svg"
-              />
-              <SocialLink
-                href="https://instagram.com"
-                src="instagram.svg"
-              />
-              </FooterContainer>
+              
               {/* <a href="mailto:support@whnmandiri.co.id">
                 <Chat>{t(`Let's Chat`)}</Chat>
               </a> */}
@@ -89,33 +72,42 @@ const Footer = ({ t }: any) => {
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{t("Latest Update")}</Title>
-              <Large to="/" left="true">
+              <Para>
                 {t("Order Monitoring System v.2.3")}
-              </Large>
-              <Large left="true" to="/">
+              </Para>
+              <Para>
                 {t("Smart Recording v.1.2")}
-              </Large>
-              <Large left="true" to="/">
+              </Para>
+              <Para>
                 {t("Office Automation v.b1.1")}
-              </Large>
-              <Large left="true" to="/">
+              </Para>
+              <Para>
                 {t("Smart Helpdesk v.3.5")}
-              </Large>
+              </Para>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <Title>{t("Company")}</Title>
-              <Large left="true" to="/">
-                {t("Company 1")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Company 2")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Company 3")}
-              </Large>
-              <Large left="true" to="/">
-                {t("Company 4")}
-              </Large>
+              <Title>{t("Representative Office")}</Title>
+              <Para>
+                {t("Bandung")}
+              </Para>
+              <Para>
+                {t("Semarang")}
+              </Para>
+              <Para>
+                {t("Yogyakarta")}
+              </Para>
+              <Para>
+                {t("Surabaya")}
+              </Para>
+              <Para>
+                {t("Medan")}
+              </Para>
+              <Para>
+                {t("Makasar")}
+              </Para>
+              <Para>
+                {t("Balikpapan")}
+              </Para>
             </Col>
           </Row>
         </Container>
@@ -132,7 +124,22 @@ const Footer = ({ t }: any) => {
                 © 2023 Whnmandiri.co.id
               </LogoContainer>
             </NavLink>
-            
+              <SocialLink
+                href="https://facebook.com"
+                src="facebook.svg"
+              />
+              <SocialLink
+                href="https://twitter.com"
+                src="twitter.svg"
+              />
+              <SocialLink
+                href="https://linkedin.com"
+                src="linkedin.svg"
+              />
+              <SocialLink
+                href="https://instagram.com"
+                src="instagram.svg"
+              />         
           </Row>
         </Container>
       </Extra>

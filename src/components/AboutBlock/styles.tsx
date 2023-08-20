@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AboutSection = styled("section")`
   position: relative;
-  padding: 3rem 0 3rem;
+  padding: 7.5rem 0 1rem;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@ export const AboutSection = styled("section")`
 `;
 
 export const Content = styled("p")`
-  padding: 0.75rem 0 0.75rem;
+  padding: 0.1rem 0 0.75rem;
 `;
 
 export const ContentWrapper = styled("div")`

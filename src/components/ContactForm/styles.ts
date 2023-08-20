@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const ContactContainer = styled("div")`
-  padding: 3rem 0;
+  padding: 6.5rem 0;
 
   @media only screen and (max-width: 1024px) {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
 `;
 
