@@ -48,7 +48,7 @@ const ArtikelList = () => {
                 type="left"
                 title={item.judul}
                 content={item.deskripsi}
-                icon="smartcenter.jpg"
+                icon="artikel/smartcenter.jpg"
                 id={`artikel${item.id}`}
               />
             ))}
