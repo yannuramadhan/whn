@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Table, Button, Modal, Form, Input, message } from "antd";
+import { Row, Col, Table, Button, Modal, Form, Input, message, Upload } from "antd";
+import { UploadChangeParam, UploadFile } from "antd/lib/upload/interface";
+import { UploadOutlined } from "@ant-design/icons";
 import { Slide } from "react-awesome-reveal";
 import { useHistory } from "react-router-dom";
 import {
@@ -37,12 +39,10 @@ const Artikel: React.FC = () => {
   const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:4000/artikel', {
-        mode: 'cors',
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
+          // 'Authorization': `Bearer ${accessToken}`, // Jika Anda memiliki mekanisme autentikasi
         },
       });
       const data = await response.json();
@@ -66,18 +66,18 @@ const Artikel: React.FC = () => {
 
   const onFinishPost = async (values: Artikel) => {
     try {
+      const formData = new FormData();
+      formData.append("judul", values.judul);
+      formData.append("deskripsi", values.deskripsi);
+      formData.append("foto", JSON.stringify(values.foto.file));
+
       await fetch('http://localhost:4000/artikel', {
-        mode: 'cors',
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
-        },
-        body: JSON.stringify(values),
+        body: formData,
       });
+
       message.success("Data Berhasil Ditambah");
-      fetchData(); // Ambil data baru setelah menambah artikel
+      fetchData();
       setIsModalVisible(false);
     } catch (error) {
       console.error('Error adding artikel:', error);
@@ -97,16 +97,20 @@ const Artikel: React.FC = () => {
   const onFinishEdit = async (row: Artikel) => {
     if (selectedArticle) {
       try {
+        const formData = new FormData();
+        formData.append("judul", row.judul);
+        formData.append("deskripsi", row.deskripsi);
+        formData.append("foto", JSON.stringify(row.foto.file)); // Menggunakan properti file dari objek foto
+
         await fetch(`http://localhost:4000/artikel/${selectedArticle.id}`, {
-        method: 'PUT',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
-        },
-          body: JSON.stringify(row),
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${accessToken}`, // Jika Anda memiliki mekanisme autentikasi
+          },
+          body: formData,
         });
+
         message.success("Data Berhasil Dirubah");
         fetchData();
         setEditModalVisible(false);
@@ -120,15 +124,14 @@ const Artikel: React.FC = () => {
     try {
       await fetch(`http://localhost:4000/artikel/${row.id}`, {
         method: 'DELETE',
-        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
+          // 'Authorization': `Bearer ${accessToken}`, // Jika Anda memiliki mekanisme autentikasi
         },
       });
+
       message.success("Data Berhasil Dihapus");
-      fetchData(); // Ambil data baru setelah menghapus artikel
+      fetchData();
     } catch (error) {
       console.error('Error deleting artikel:', error);
     }
@@ -173,9 +176,9 @@ const Artikel: React.FC = () => {
                     form={form}
                     onFinish={onFinishPost}
                     initialValues={{
-                      judul: "", // Atur nilai awal judul menjadi string kosong
-                      deskripsi: "", // Atur nilai awal deskripsi menjadi string kosong
-                      foto: "", // Atur nilai awal foto menjadi string kosong
+                      judul: "",
+                      deskripsi: "",
+                      foto: "",
                     }}
                   >
                     <Form.Item label="Judul" name="judul">
@@ -185,7 +188,19 @@ const Artikel: React.FC = () => {
                       <Input.TextArea />
                     </Form.Item>
                     <Form.Item label="Foto" name="foto">
-                      <Input.TextArea />
+                      <Upload
+                        name="foto"
+                        action="http://localhost:4000/images"
+                        listType="picture"
+                        maxCount={1}
+                        beforeUpload={(file) => {
+                          const fileName = file.name;
+                          form.setFieldsValue({ foto: fileName });
+                          return false;
+                        }}
+                      >
+                        <Button icon={<UploadOutlined />}>Pilih Gambar</Button>
+                      </Upload>
                     </Form.Item>
                     <Button type="primary" htmlType="submit">
                       Simpan
@@ -193,34 +208,46 @@ const Artikel: React.FC = () => {
                   </Form>
                 </Modal>
                 <Modal
-                title="Edit Artikel"
-                visible={editModalVisible}
-                onCancel={handleCancel}
-                footer={null}
-              >
-                <Form
-                  form={editForm}
-                  onFinish={onFinishEdit}
-                  initialValues={{
-                    judul: selectedArticle?.judul,
-                    deskripsi: selectedArticle?.deskripsi,
-                    foto: selectedArticle?.foto,
-                  }}
+                  title="Edit Artikel"
+                  visible={editModalVisible}
+                  onCancel={handleCancel}
+                  footer={null}
                 >
-                  <Form.Item label="Judul" name="judul">
-                    <Input />
-                  </Form.Item>
-                  <Form.Item label="Deskripsi" name="deskripsi">
-                    <Input.TextArea />
-                  </Form.Item>
-                  <Form.Item label="Foto" name="foto">
-                    <Input.TextArea />
-                  </Form.Item>
-                  <Button type="primary" htmlType="submit">
-                    Simpan
-                  </Button>
-                </Form>
-              </Modal>
+                  <Form
+                    form={editForm}
+                    onFinish={onFinishEdit}
+                    initialValues={{
+                      judul: selectedArticle?.judul,
+                      deskripsi: selectedArticle?.deskripsi,
+                      foto: selectedArticle?.foto,
+                    }}
+                  >
+                    <Form.Item label="Judul" name="judul">
+                      <Input />
+                    </Form.Item>
+                    <Form.Item label="Deskripsi" name="deskripsi">
+                      <Input.TextArea />
+                    </Form.Item>
+                    <Form.Item label="Foto" name="foto">
+                      <Upload
+                        name="foto"
+                        action="http://localhost:4000/images"
+                        listType="picture"
+                        maxCount={1}
+                        beforeUpload={(file) => {
+                          const fileName = file.name;
+                          editForm.setFieldsValue({ foto: fileName });
+                          return false;
+                        }}
+                      >
+                        <Button icon={<UploadOutlined />}>Pilih Gambar</Button>
+                      </Upload>
+                    </Form.Item>
+                    <Button type="primary" htmlType="submit">
+                      Simpan
+                    </Button>
+                  </Form>
+                </Modal>
               </Col>
             </ContentWrapper>
           </Row>

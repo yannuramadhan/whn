@@ -13,7 +13,7 @@ const IntroBlock = lazy(() => import("../../components/IntroBlock/IntroContentBl
 const ArtikelListBlock = lazy(() => import("../../components/ArtikelListBlock"));
 
 const ArtikelList = () => {
-  const [artikel, setArtikel] = useState<{ id: number; judul: string; deskripsi: string }[]>([]);
+  const [artikel, setArtikel] = useState<{ id: number; judul: string; deskripsi: string; foto: string}[]>([]);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -48,7 +48,7 @@ const ArtikelList = () => {
                 type="left"
                 title={item.judul}
                 content={item.deskripsi}
-                icon="artikel/smartcenter.jpg"
+                icon={item.foto}
                 id={`artikel${item.id}`}
               />
             ))}
