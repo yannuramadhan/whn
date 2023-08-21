@@ -2,24 +2,40 @@ import styled from "styled-components";
 
 export const ProductSection = styled("section")`
   position: relative;
-  padding: 7rem 0 3rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
+  padding: 10rem 5rem 0rem 22rem;
 
-  @media screen and (max-width: 1024px) {
-    padding: 5.5rem 0 3rem;
+  @media only screen and (max-width: 1024px) {
+    padding: 10rem 0rem 0rem 0rem;
   }
 `;
 
 export const Content = styled("p")`
-  padding: 0.75rem 0 0.75rem;
+  margin: 10rem 0rem 0rem 20rem;
 `;
 
 export const ContentWrapper = styled("div")`
-  max-width: 570px;
+  position: relative;
 
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
+  @media only screen and (max-width: 575px) {
+    padding-top: 4rem;
   }
 `;
+
+export const ServiceWrapper = styled("div")`
+  justify-content: space-between;
+  max-width: 100%;
+`;
+
+export const MinTitle = styled("h6")`
+  font-size: 15px;
+  line-height: 1rem;
+  padding: 0rem 0;
+  text-transform: uppercase;
+  color: #000;
+  font-family: "Motiva Sans Light", sans-serif;
+`;
+
+export const MinPara = styled("p")`
+  font-size: 13px;
+`;
+

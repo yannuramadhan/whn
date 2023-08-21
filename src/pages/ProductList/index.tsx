@@ -1,13 +1,8 @@
 import { lazy } from "react";
 import Partner from "../../content/Partner.json";
-import Vision from "../../content/Vision.json";
-import ProductList1 from "../../content/ProductList1.json";
-import ProductList2 from "../../content/ProductList2.json";
-import ProductList3 from "../../content/ProductList3.json";
-import Header from "../../components/HeaderDetail";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
-
+import { useState, useEffect } from "react";
 
 const PartnerBlock = lazy(() => import("../../components/PartnerBlock"));
 const Container = lazy(() => import("../../common/Container"));
@@ -16,43 +11,58 @@ const IntroBlock = lazy(() => import("../../components/IntroBlock/IntroContentBl
 const ProductListBlock = lazy(() => import("../../components/ProductListBlock"));
 
 const ProductList = () => {
+  const [product, setProduct] = useState<{ id: number; judul: string; deskripsi: string; foto: string}[]>([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetch('http://localhost:4000/product', {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*'
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setProduct(data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
   return (
     <>
-    <IntroBlock id="intro" />
-    <div style={{backgroundColor:"#7e95ff69"}}>
-      <Header />
-      <Container>
-        <ScrollToTop />  
-        <ProductListBlock
-          type="left"
-          title={ProductList1.title}
-          content={ProductList1.text}
-          icon="smartcenter.jpg"
-          id="product1"
-        />
-      </Container>
-      <div style={{backgroundColor:"#ffffff"}}>
+      <IntroBlock id="intro" />
+
+      <div style={{ backgroundColor: "#7e95ff69" }}>
+        <Header />
         <Container>
-          <ProductListBlock
-            type="left"
-            title={ProductList2.title}
-            content={ProductList2.text}
-            icon="smarttarif.jpg"
-            id="product2"
-          />
+          <ScrollToTop />
+          <div>
+            {product.map(item => (
+              <ProductListBlock
+                key={item.id}
+                type="left"
+                title={item.judul}
+                content={item.deskripsi}
+                icon={item.foto}
+                id={`product${item.id}`}
+              />
+            ))}
+          </div>
         </Container>
-      </div>
-      <div style={{backgroundColor:"#7e953699"}}>
+      {/* <div style={{backgroundColor:"#7e953699"}}>
       <Container>
         <ProductListBlock
           type="left"
-          title={ProductList3.title}
-          content={ProductList3.text}
+          title={ProductListview.judul}
+          content={ProductListview.deskripsi}
           icon="smartrecord.jpg"
           id="product3"
         />
       </Container>
-      </div>
+      </div> */}
       {/* <div style={{backgroundImage:background}}>
       <Container>  
         <VisionBlock

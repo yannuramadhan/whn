@@ -13,7 +13,8 @@ interface Artikel {
   id: number;
   judul: string;
   deskripsi: string;
-  foto: string;
+  foto: any;
+  info: any;
 }
 
 const Artikel: React.FC = () => {
@@ -36,6 +37,7 @@ const Artikel: React.FC = () => {
     fetchData();
   }, []);
 
+  //GET Artikel
   const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:4000/artikel', {
@@ -69,7 +71,7 @@ const Artikel: React.FC = () => {
       const formData = new FormData();
       formData.append("judul", values.judul);
       formData.append("deskripsi", values.deskripsi);
-      formData.append("foto", JSON.stringify(values.foto.file));
+      formData.append("foto", values.foto.file);
 
       await fetch('http://localhost:4000/artikel', {
         method: 'POST',
@@ -84,42 +86,37 @@ const Artikel: React.FC = () => {
     }
   };
 
-  const handleEdit = async (row: Artikel) => {
+  //UPDATE ARTIKEL
+  const handleEdit = (row: Artikel) => {
     setSelectedArticle(row);
+    setEditModalVisible(true);
     editForm.setFieldsValue({
       judul: row.judul,
       deskripsi: row.deskripsi,
-      foto: row.foto,
     });
-    setEditModalVisible(true);
   };
 
-  const onFinishEdit = async (row: Artikel) => {
-    if (selectedArticle) {
-      try {
-        const formData = new FormData();
-        formData.append("judul", row.judul);
-        formData.append("deskripsi", row.deskripsi);
-        formData.append("foto", JSON.stringify(row.foto.file)); // Menggunakan properti file dari objek foto
+  const onFinishEdit = async (values: any) => {
+    try {
+      const formData = new FormData();
+      formData.append("judul", values.judul);
+      formData.append("deskripsi", values.deskripsi);
+      formData.append("foto", values.foto.file);
 
-        await fetch(`http://localhost:4000/artikel/${selectedArticle.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${accessToken}`, // Jika Anda memiliki mekanisme autentikasi
-          },
-          body: formData,
-        });
+      await fetch(`http://localhost:4000/artikel/${selectedArticle?.id}`, {
+        method: 'PUT',
+        body: formData,
+      });
 
-        message.success("Data Berhasil Dirubah");
-        fetchData();
-        setEditModalVisible(false);
-      } catch (error) {
-        console.error('Error editing artikel:', error);
-      }
+      message.success("Data Berhasil Diubah");
+      fetchData();
+      setEditModalVisible(false);
+      setSelectedArticle(null);
+    } catch (error) {
+      console.error('Error editing artikel:', error);
     }
   };
-
+  //DELETE ARTIKEL
   const handleDelete = async (row: Artikel) => {
     try {
       await fetch(`http://localhost:4000/artikel/${row.id}`, {
@@ -236,7 +233,7 @@ const Artikel: React.FC = () => {
                         maxCount={1}
                         beforeUpload={(file) => {
                           const fileName = file.name;
-                          editForm.setFieldsValue({ foto: fileName });
+                          form.setFieldsValue({ foto: fileName });
                           return false;
                         }}
                       >
