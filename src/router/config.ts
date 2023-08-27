@@ -10,6 +10,11 @@ const routes = [
     component: "VisionMission",
   },
   {
+    path: ["/contact"],
+    exact: true,
+    component: "Contact",
+  },
+  {
     path: ["/dashboard"],
     exact: true,
     component: "Dashboard",
