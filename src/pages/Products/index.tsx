@@ -3,20 +3,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Navbar = lazy(() => import("../../components/Backend/NavbarSide/navbar"));
-const DashboardBlock = lazy(() => import("../../components/Backend/DashboardBlock"));
+const ProductBlock = lazy(() => import("../../components/Backend/ProductBlock"));
 
-const DashboardContainer = styled.div`
+const ProductContainer = styled.div`
   display: flex;
   justify-content: space-between; /* Menggunakan space-between untuk menghindari tumpang tindih */
 `;
 
-const Dashboard = () => {
+const Products = () => {
     return (
-      <DashboardContainer>
+      <ProductContainer>
         <Navbar />
-        <DashboardBlock />
-      </DashboardContainer>
+        <ProductBlock />
+      </ProductContainer>
     );
 };
 
-export default Dashboard;
+export default Products;

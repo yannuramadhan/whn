@@ -15,14 +15,12 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch('http://localhost:4000/product', {
+    fetch('https://api.whnmandiri.co.id/products', {
       mode: 'cors',
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
-      },
+      'Content-Type': 'application/json'
+    },
     })
       .then(response => response.json())
       .then(data => {
@@ -30,6 +28,13 @@ const ProductList = () => {
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
+
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
 
   return (
     <>
@@ -45,9 +50,10 @@ const ProductList = () => {
                 key={item.id}
                 type="left"
                 title={item.judul}
-                content={item.deskripsi}
+                content={truncateText(item.deskripsi, 150)}
                 icon={item.foto}
                 id={`product${item.id}`}
+                button={item.id}
               />
             ))}
           </div>

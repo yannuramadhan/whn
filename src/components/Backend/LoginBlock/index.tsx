@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { Slide } from "react-awesome-reveal";
-import { Button, Form, Input, Row, Col, message } from 'antd';
-import './styles.css';
+import { Button, Form, Input, message } from 'antd';
+import { BodyContainer, LoginForm, LoginTitle } from "./styles";
 
 interface User {
   username: string;
@@ -25,68 +24,67 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: User) => {
     try {
-      const response = await axios.get('http://localhost:4000/users', {
+      const response = await axios.get('https://api.whnmandiri.co.id/login', {
         params: {
           username: values.username,
           password: values.password
         }
       });
-      const users: User[] = response.data;
-      const loggedInUser = users.find(user => user.username === values.username && user.password === values.password);
 
-      if (loggedInUser) {
+      if (response.data.message === 'Login successful') {
         message.success("Login Berhasil");
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', 'true');
         history.push('/dashboard');
-      } else {
-        message.error("Username / Password Salah");
-      }
+      } 
 
     } catch (error) {
       console.error('Error:', error);
+      message.error("Username / Password Salah");
     }
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Gagal:', errorInfo);
   };
-
+  
   return (
-    <div className="login-form">
-      <p className="login-title">LOGIN</p>
-      <Form 
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Silakan masukkan username!' }]}
+    <BodyContainer>
+      <LoginForm>
+        <LoginTitle>Login</LoginTitle>
+        <Form 
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input />
-        </Form.Item>
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: 'Silakan masukkan username!' }]}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Silakan masukkan password!' }]}
-        >
-          <Input.Password />
-        </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Silakan masukkan password!' }]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            <span>Masuk</span>
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              <span>Masuk</span>
+            </Button>
+          </Form.Item>
+        </Form>
+      </LoginForm>
+    </BodyContainer>
   );
 };
 

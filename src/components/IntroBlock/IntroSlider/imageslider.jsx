@@ -62,9 +62,10 @@ const Slide = styled.div`
   background-position: center;
   background-size: cover;
   transition: 750ms all ease-in-out;
+  cursor: pointer; /* Tambahkan cursor pointer saat diarahkan ke slide */
   @media (max-width: 768px) {
     flex-shrink: 0;
-    width: 100%; // Pengaturan ulang lebar slide untuk layar kecil
+    width: 100%;
   }
 `;
 
@@ -73,15 +74,6 @@ const ChildrenWrapper = styled.div`
   top: 100%;
   left: 100%;
   transform: translate(-100%, -100%);
-`;
-
-const Gradient = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 const ImageSlider = ({
@@ -109,17 +101,19 @@ const ImageSlider = ({
 
   return (
     <Wrapper>
-      {images.map((imageUrl, index) => (
-        <Slide
-          key={index}
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-            marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
-            backgroundSize: 'cover', // Ubah ukuran gambar untuk responsif
-          }}
-        ></Slide>
+      {images.map((imageInfo, index) => (
+          <Slide
+            key={index}
+            style={{
+              backgroundImage: `url(${imageInfo.imageUrl})`,
+              marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
+              backgroundSize: 'cover',
+            }}
+            onClick={() => {
+              window.open(imageInfo.imageLink, '_blank'); // Buka tautan di tab baru
+            }}
+          />
       ))}
-      <Gradient />
       <Indicator
         currentSlide={currentSlide}
         amountSlides={images.length}

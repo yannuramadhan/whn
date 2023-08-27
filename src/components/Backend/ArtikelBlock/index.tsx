@@ -17,6 +17,8 @@ interface Artikel {
   info: any;
 }
 
+const UrlArtikel = 'https://api.whnmandiri.co.id/articles';
+
 const Artikel: React.FC = () => {
   const history = useHistory();
   const [artikel, setArtikel] = useState<Artikel[]>([]);
@@ -29,18 +31,15 @@ const Artikel: React.FC = () => {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-      history.push('/login');
+      window.location.href = "/login";
     }
-  }, []);
-
-  useEffect(() => {
     fetchData();
   }, []);
 
   //GET Artikel
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/artikel', {
+      const response = await fetch(UrlArtikel, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -73,13 +72,17 @@ const Artikel: React.FC = () => {
       formData.append("deskripsi", values.deskripsi);
       formData.append("foto", values.foto.file);
 
-      await fetch('http://localhost:4000/artikel', {
+      await fetch(UrlArtikel, {
         method: 'POST',
         body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
 
-      message.success("Data Berhasil Ditambah");
       fetchData();
+      message.success("Data Berhasil Ditambah");
+      form.resetFields();
       setIsModalVisible(false);
     } catch (error) {
       console.error('Error adding artikel:', error);
@@ -103,13 +106,17 @@ const Artikel: React.FC = () => {
       formData.append("deskripsi", values.deskripsi);
       formData.append("foto", values.foto.file);
 
-      await fetch(`http://localhost:4000/artikel/${selectedArticle?.id}`, {
+      await fetch(UrlArtikel+`/${selectedArticle?.id}`, {
         method: 'PUT',
         body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
 
-      message.success("Data Berhasil Diubah");
       fetchData();
+      message.success("Data Berhasil Diubah");
+      editForm.resetFields();
       setEditModalVisible(false);
       setSelectedArticle(null);
     } catch (error) {
@@ -119,7 +126,7 @@ const Artikel: React.FC = () => {
   //DELETE ARTIKEL
   const handleDelete = async (row: Artikel) => {
     try {
-      await fetch(`http://localhost:4000/artikel/${row.id}`, {
+      await fetch(UrlArtikel+`/${row.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -160,11 +167,11 @@ const Artikel: React.FC = () => {
           <Row justify="center" align="middle">
             <ContentWrapper>
               <Col lg={24} md={24} sm={24} xs={24}>
-                <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar Artikel</p>
+                <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar Article</p>
                 <Button onClick={showModal} style={{marginBottom: '10px' }}>Tambah</Button>
                 <Table dataSource={artikel} columns={columnsWithAction}  />
                 <Modal
-                  title="Tambah Artikel"
+                  title="Tambah Article"
                   visible={isModalVisible}
                   onCancel={handleCancel}
                   footer={null}
@@ -187,7 +194,7 @@ const Artikel: React.FC = () => {
                     <Form.Item label="Foto" name="foto">
                       <Upload
                         name="foto"
-                        action="http://localhost:4000/images"
+                        action="https://api.whnmandiri.co.id/images"
                         listType="picture"
                         maxCount={1}
                         beforeUpload={(file) => {
@@ -205,7 +212,7 @@ const Artikel: React.FC = () => {
                   </Form>
                 </Modal>
                 <Modal
-                  title="Edit Artikel"
+                  title="Edit Article"
                   visible={editModalVisible}
                   onCancel={handleCancel}
                   footer={null}
@@ -228,7 +235,7 @@ const Artikel: React.FC = () => {
                     <Form.Item label="Foto" name="foto">
                       <Upload
                         name="foto"
-                        action="http://localhost:4000/images"
+                        action="https://api.whnmandiri.co.id/images"
                         listType="picture"
                         maxCount={1}
                         beforeUpload={(file) => {

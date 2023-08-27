@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ProductSection = styled("section")`
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   padding: 10rem 5rem 0rem 22rem;
 
   @media only screen and (max-width: 1024px) {

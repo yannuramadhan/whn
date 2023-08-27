@@ -12,14 +12,12 @@ interface LocationState {
 }
 
 const Dashboard: React.FC = () => {
-  const history = useHistory();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-
     if (!isLoggedIn) {
       // Jika tidak ada status login di localStorage, kembali ke halaman login
-      return history.replace("/login");
+      window.location.href = "/login";
     }
   }, []);
 

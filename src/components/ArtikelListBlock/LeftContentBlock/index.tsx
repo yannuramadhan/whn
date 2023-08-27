@@ -19,6 +19,7 @@ const LeftContentBlock = ({
   section,
   t,
   id,
+  button,
 }: ContentBlockProps) => {
   return (
     <LeftContentSection id={id}>
@@ -45,6 +46,9 @@ const LeftContentBlock = ({
                     })}
                 </Row>
               </ServiceWrapper>
+              <button type="button">
+                <a href={`/articledetail/${button}`}><b>Read More</b></a>
+              </button>
             </ContentWrapper>
           </Col>
         </Row>

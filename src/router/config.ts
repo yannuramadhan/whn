@@ -5,6 +5,11 @@ const routes = [
     component: "Home",
   },
   {
+    path: ["/visionmission"],
+    exact: true,
+    component: "VisionMission",
+  },
+  {
     path: ["/dashboard"],
     exact: true,
     component: "Dashboard",
@@ -15,14 +20,14 @@ const routes = [
     component: "Login",
   },
   {
-    path: ["/dashboard/artikel"],
+    path: ["/dashboard/articles"],
     exact: true,
-    component: "Artikel",
+    component: "Articles",
   },
   {
-    path: ["/dashboard/product"],
+    path: ["/dashboard/products"],
     exact: true,
-    component: "Product",
+    component: "Products",
   },
   {
     path: ["/productlist"],
@@ -30,9 +35,19 @@ const routes = [
     component: "ProductList",
   },
   {
-    path: ["/artikellist"],
+    path: ["/productdetail/:id"],
     exact: true,
-    component: "ArtikelList",
+    component: "ProductDetail",
+  },
+  {
+    path: ["/articlelist"],
+    exact: true,
+    component: "ArticleList",
+  },
+  {
+    path: ["/articledetail/:id"],
+    exact: true,
+    component: "ArticleDetail",
   },
 ];
 

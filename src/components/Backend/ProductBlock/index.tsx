@@ -9,7 +9,7 @@ import {
   ContentWrapper,
 } from "./styles"; 
 
-interface Product {
+interface Produk {
   id: number;
   judul: string;
   deskripsi: string;
@@ -17,30 +17,29 @@ interface Product {
   info: any;
 }
 
-const Product: React.FC = () => {
+const urlProduk = "https://api.whnmandiri.co.id/products"
+
+const Produk: React.FC = () => {
   const history = useHistory();
-  const [product, setProduct] = useState<Product[]>([]);
+  const [product, setProduct] = useState<Produk[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Produk | null>(null);
   const [form] = Form.useForm();
   const [editForm] = Form.useForm();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-      history.push('/login');
+      window.location.href = "/login";
     }
-  }, []);
-
-  useEffect(() => {
     fetchData();
   }, []);
 
   //GET Product
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:4000/product', {
+      const response = await fetch(urlProduk, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -61,25 +60,29 @@ const Product: React.FC = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
     setEditModalVisible(false);
-    setSelectedArticle(null);
+    setSelectedProduct(null);
     form.resetFields();
     editForm.resetFields();
   };
 
-  const onFinishPost = async (values: Product) => {
+  const onFinishPost = async (values: Produk) => {
     try {
       const formData = new FormData();
       formData.append("judul", values.judul);
       formData.append("deskripsi", values.deskripsi);
       formData.append("foto", values.foto.file);
 
-      await fetch('http://localhost:4000/product', {
+      await fetch(urlProduk, {
         method: 'POST',
         body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
 
       message.success("Data Berhasil Ditambah");
       fetchData();
+      form.resetFields();
       setIsModalVisible(false);
     } catch (error) {
       console.error('Error adding product:', error);
@@ -87,8 +90,8 @@ const Product: React.FC = () => {
   };
 
   //UPDATE Product
-  const handleEdit = (row: Product) => {
-    setSelectedArticle(row);
+  const handleEdit = (row: Produk) => {
+    setSelectedProduct(row);
     setEditModalVisible(true);
     editForm.setFieldsValue({
       judul: row.judul,
@@ -103,23 +106,27 @@ const Product: React.FC = () => {
       formData.append("deskripsi", values.deskripsi);
       formData.append("foto", values.foto.file);
 
-      await fetch(`http://localhost:4000/product/${selectedArticle?.id}`, {
+      await fetch(urlProduk+`/${selectedProduct?.id}`, {
         method: 'PUT',
         body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
 
       message.success("Data Berhasil Diubah");
       fetchData();
+      editForm.resetFields();
       setEditModalVisible(false);
-      setSelectedArticle(null);
+      setSelectedProduct(null);
     } catch (error) {
       console.error('Error editing product:', error);
     }
   };
   //DELETE Product
-  const handleDelete = async (row: Product) => {
+  const handleDelete = async (row: Produk) => {
     try {
-      await fetch(`http://localhost:4000/product/${row.id}`, {
+      await fetch(urlProduk+`/${row.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +144,7 @@ const Product: React.FC = () => {
   const actionColumn = {
     title: 'Aksi',
     key: 'aksi',
-    render: (row: Product) => (
+    render: (row: Produk) => (
       <div>
         <Button onClick={() => handleEdit(row)}>Edit</Button>
         <Button onClick={() => handleDelete(row)}>Hapus</Button>
@@ -187,7 +194,7 @@ const Product: React.FC = () => {
                     <Form.Item label="Foto" name="foto">
                       <Upload
                         name="foto"
-                        action="http://localhost:4000/images"
+                        action="https://api.whnmandiri.co.id/images"
                         listType="picture"
                         maxCount={1}
                         beforeUpload={(file) => {
@@ -214,9 +221,9 @@ const Product: React.FC = () => {
                     form={editForm}
                     onFinish={onFinishEdit}
                     initialValues={{
-                      judul: selectedArticle?.judul,
-                      deskripsi: selectedArticle?.deskripsi,
-                      foto: selectedArticle?.foto,
+                      judul: selectedProduct?.judul,
+                      deskripsi: selectedProduct?.deskripsi,
+                      foto: selectedProduct?.foto,
                     }}
                   >
                     <Form.Item label="Judul" name="judul">
@@ -228,7 +235,7 @@ const Product: React.FC = () => {
                     <Form.Item label="Foto" name="foto">
                       <Upload
                         name="foto"
-                        action="http://localhost:4000/images"
+                        action="https://api.whnmandiri.co.id/images"
                         listType="picture"
                         maxCount={1}
                         beforeUpload={(file) => {
@@ -254,5 +261,5 @@ const Product: React.FC = () => {
   );
 };
 
-export default Product;
+export default Produk;
 

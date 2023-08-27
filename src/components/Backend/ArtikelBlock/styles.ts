@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ArtikelSection = styled("section")`
-  position: relative;
+  display: flex;
+  justify-content: space-between; /* Menggunakan space-between untuk menghindari tumpang tindih */
   padding: 10rem 5rem 0rem 22rem;
 
   @media only screen and (max-width: 1024px) {

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const DashboardSection = styled("section")`
-  position: relative;
+  display: flex;
+  justify-content: space-between; /* Menggunakan space-between untuk menghindari tumpang tindih */
   padding: 10rem 5rem 0rem 22rem;
 
   @media only screen and (max-width: 1024px) {
-    padding: 10rem 0rem 0rem 20rem;
+    padding: 10rem 0rem 0rem 0rem;
   }
 `;
 

@@ -11,6 +11,7 @@ const Navbar = () => {
   const handleLogout = () => {
     // Menghapus status login dari localStorage
     localStorage.removeItem('isLoggedIn');
+    window.location.href = "/login";
   };
 
   return (
@@ -32,7 +33,7 @@ const Navbar = () => {
               );
             })}
             <li className="nav-text">
-              <Link to="/login" className="nav-link" onClick={handleLogout}>
+              <Link to="#" className="nav-link" onClick={handleLogout}>
                 <FaIcons.FaDoorOpen />
                  <span>Logout</span>
               </Link>
