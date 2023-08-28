@@ -19,6 +19,8 @@ const About = ({ title, content, t , id}: AboutProps) => {
       behavior: "smooth",
     });
   };
+  
+
   return (
     <AboutSection id={id}>
       <Slide direction="up">

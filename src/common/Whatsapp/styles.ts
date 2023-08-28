@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const ScrollUpContainer = styled("div")<any>`
+export const WhatsappContainer = styled("div")<any>`
   padding: 10px;
   position: fixed;
-  right: 30px;
-  bottom: 30px;
+  left: 0px;
+  bottom: 250px;
   z-index: 10;
   cursor: pointer;
-  background: rgb(245, 248, 255);
+  background: transparent;
   text-align: center;
   align-items: center;
   border-radius: 4px;
@@ -19,7 +19,7 @@ export const ScrollUpContainer = styled("div")<any>`
   &:hover,
   &:active,
   &:focus {
-    background: rgb(224, 224, 224);
+    background: transparent;
   }
 
   @media screen and (max-width: 1240px) {

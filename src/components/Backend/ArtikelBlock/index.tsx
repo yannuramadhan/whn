@@ -67,6 +67,7 @@ const Artikel: React.FC = () => {
 
   const onFinishPost = async (values: Artikel) => {
     try {
+      console.log("Data yang akan dikirim:", values);
       const formData = new FormData();
       formData.append("judul", values.judul);
       formData.append("deskripsi", values.deskripsi);
@@ -75,9 +76,6 @@ const Artikel: React.FC = () => {
       await fetch(UrlArtikel, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Content-Type': 'application/json'
-        },
       });
 
       fetchData();
@@ -109,9 +107,6 @@ const Artikel: React.FC = () => {
       await fetch(UrlArtikel+`/${selectedArticle?.id}`, {
         method: 'PUT',
         body: formData,
-        headers: {
-          'Content-Type': 'application/json'
-        },
       });
 
       fetchData();

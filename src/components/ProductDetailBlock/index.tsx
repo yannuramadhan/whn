@@ -21,7 +21,7 @@ const ProductDetailBlock = ({ title, content, t , id, foto}: ProductDetailProps)
   };
   return (
     <ProductDetailSection id={id}>
-      <Slide direction="up">
+      <Slide direction="left">
         <Row justify="center" align="middle">
           <ContentWrapper>
             <Col lg={24} md={24} sm={24} xs={24}>

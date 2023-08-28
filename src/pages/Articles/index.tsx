@@ -1,6 +1,6 @@
 import { lazy } from "react";
-import React from 'react';
 import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
 
 const Navbar = lazy(() => import("../../components/Backend/NavbarSide/navbar"));
 const ArtikelBlock = lazy(() => import("../../components/Backend/ArtikelBlock"));
@@ -11,6 +11,13 @@ const ArtikelContainer = styled.div`
 `;
 
 const Articles = () => {
+    useEffect(() => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (!isLoggedIn) {
+        window.location.href = "/login";
+      }
+    }, []);
+
     return (
       <ArtikelContainer>
         <Navbar />

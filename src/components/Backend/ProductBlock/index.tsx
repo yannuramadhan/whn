@@ -75,9 +75,6 @@ const Produk: React.FC = () => {
       await fetch(urlProduk, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Content-Type': 'application/json'
-        },
       });
 
       message.success("Data Berhasil Ditambah");
@@ -109,9 +106,6 @@ const Produk: React.FC = () => {
       await fetch(urlProduk+`/${selectedProduct?.id}`, {
         method: 'PUT',
         body: formData,
-        headers: {
-          'Content-Type': 'application/json'
-        },
       });
 
       message.success("Data Berhasil Diubah");

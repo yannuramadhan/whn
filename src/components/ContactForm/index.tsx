@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
-import { Row, Col , message, Form , FormInstance} from 'antd';
+import { Row, Col , message, Form , Input} from 'antd';
 import { withTranslation } from 'react-i18next';
 import { Slide, Zoom } from 'react-awesome-reveal';
 import { ContactProps, ValidationTypeProps } from './types';
 import { Button } from "../../common/Button";
 import Block from "../Block";
-import Input from "../../common/Input";
-import TextArea from "../../common/TextArea";
+// import Input from "../../common/Input";
+// import TextArea from "../../common/TextArea";
 import { ContactContainer, FormGroup, Span, ButtonContainer } from './styles';
 
 
@@ -27,13 +27,19 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
         </Col>
         <Col lg={12} md={12} sm={24} xs={24}>
           <Slide direction="right">
-            <FormGroup autoComplete="off" onSubmit={handleSubmit}>
+            <FormGroup 
+              action="https://formspree.io/f/xjvqwzyj"
+              method="POST" 
+              autoComplete="off" 
+              onSubmit={handleSubmit}>
+                
               <Col span={24}>
                 <label>Name</label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Your Name"
+                  required
                 />
                 <ValidationError 
                     prefix="Name" 
@@ -41,12 +47,14 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                     errors={state.errors}
                 />
               </Col>
+              <br />
               <Col span={24}>
                 <label>Email</label>
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Your Email"
+                  required
                 />
                 <ValidationError 
                     prefix="Email" 
@@ -54,11 +62,13 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                     errors={state.errors}
                 />
               </Col>
+              <br />
               <Col span={24}>
                 <label>Message</label>
                 <textarea
                   placeholder="Your Message"
                   name="message"
+                  required
                 />
                 <ValidationError 
                     prefix="Message" 

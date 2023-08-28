@@ -18,9 +18,22 @@ const Login: React.FC = () => {
     const storedLoggedInStatus = localStorage.getItem('isLoggedIn');
     if (storedLoggedInStatus === 'true') {
       setIsLoggedIn(true);
-      history.push('/dashboard');
+      window.location.href = "/dashboard";
     }
   }, [history]);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (isLoggedIn) {
+      console.log('Setting timeout...');
+      timeout = setTimeout(() => {
+        setIsLoggedIn(false);
+        console.log('timeout...');
+        localStorage.setItem('isLoggedIn', 'false');
+      }, 60000); 
+    }
+  }, [isLoggedIn]);
 
   const onFinish = async (values: User) => {
     try {
@@ -35,7 +48,7 @@ const Login: React.FC = () => {
         message.success("Login Berhasil");
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', 'true');
-        history.push('/dashboard');
+        window.location.href = "/dashboard";
       } 
 
     } catch (error) {

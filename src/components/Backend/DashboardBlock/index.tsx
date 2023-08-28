@@ -16,7 +16,6 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (!isLoggedIn) {
-      // Jika tidak ada status login di localStorage, kembali ke halaman login
       window.location.href = "/login";
     }
   }, []);

@@ -15,6 +15,7 @@ const AboutBlock = lazy(() => import("../../components/AboutBlock"));
 const IntroBlock = lazy(() => import("../../components/IntroBlock/IntroContentBlock"));
 const OurCustomersBlock = lazy(() => import("../../components/OurCustomersBlock"));
 const Container = lazy(() => import("../../common/Container"));
+const WhatsApp = lazy(() => import("../../common/Whatsapp"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 const ServicesBlock = lazy(() => import("../../components/ServicesBlock"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
@@ -29,6 +30,7 @@ const Home = () => {
       <IntroSlider />
       <Container>
         <ScrollToTop />
+        <WhatsApp />
         <AboutBlock
           title={About.title}
           content={About.text}

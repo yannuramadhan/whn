@@ -19,7 +19,7 @@ import {
   Span,
 } from "./styles";
 
-const Header = ({ t }: any) => {
+const HeaderScrollTo = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
 
   const showDrawer = () => {
@@ -117,4 +117,4 @@ const Header = ({ t }: any) => {
   );
 };
 
-export default withTranslation()(Header);
+export default withTranslation()(HeaderScrollTo);

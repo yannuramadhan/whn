@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 
 const Navbar = lazy(() => import("../../components/Backend/NavbarSide/navbar"));
@@ -11,6 +11,12 @@ const DashboardContainer = styled.div`
 `;
 
 const Dashboard = () => {
+  useEffect(() => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (!isLoggedIn) {
+        window.location.href = "/login";
+      }
+    }, []);
     return (
       <DashboardContainer>
         <Navbar />
