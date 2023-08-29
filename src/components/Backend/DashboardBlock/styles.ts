@@ -1,25 +1,24 @@
 import styled from "styled-components";
 
 export const DashboardSection = styled("section")`
+  background-color: hsl(200, 12%, 80%);
   display: flex;
-  justify-content: space-between; /* Menggunakan space-between untuk menghindari tumpang tindih */
-  padding: 10rem 5rem 0rem 22rem;
+  justify-content: center; /* Menggunakan space-between untuk menghindari tumpang tindih */
+  padding: 5.5rem 8rem 0rem 25rem;
+  min-height: 100vh;
+  min-width: 100vw;
 
-  @media only screen and (max-width: 1024px) {
+  @media screen and (max-width: 1024px) {
     padding: 10rem 0rem 0rem 0rem;
   }
 `;
 
 export const Content = styled("p")`
-  margin: 10rem 0rem 0rem 20rem;
+  margin: 0rem 0rem 0rem 0rem;
 `;
 
 export const ContentWrapper = styled("div")`
   position: relative;
-
-  @media only screen and (max-width: 575px) {
-    padding-top: 4rem;
-  }
 `;
 
 export const ServiceWrapper = styled("div")`

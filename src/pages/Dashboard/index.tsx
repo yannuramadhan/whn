@@ -18,10 +18,12 @@ const Dashboard = () => {
       }
     }, []);
     return (
-      <DashboardContainer>
+      <>
         <Navbar />
-        <DashboardBlock />
-      </DashboardContainer>
+        <DashboardContainer>
+          <DashboardBlock />
+        </DashboardContainer>
+      </>
     );
 };
 

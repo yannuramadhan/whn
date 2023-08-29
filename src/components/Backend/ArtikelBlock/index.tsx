@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Table, Button, Modal, Form, Input, message, Upload } from "antd";
-import { UploadChangeParam, UploadFile } from "antd/lib/upload/interface";
-import { UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Slide } from "react-awesome-reveal";
 import { useHistory } from "react-router-dom";
 import {
@@ -198,7 +197,7 @@ const Artikel: React.FC = () => {
                           return false;
                         }}
                       >
-                        <Button icon={<UploadOutlined />}>Pilih Gambar</Button>
+                        <Button icon={<UploadOutlined />} >Pilih Gambar</Button>
                       </Upload>
                     </Form.Item>
                     <Button type="primary" htmlType="submit">

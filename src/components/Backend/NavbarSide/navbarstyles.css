@@ -1,15 +1,26 @@
-.navbar {
+.navbartop {
   background-color: #060b26;
-  height: 80px;
+  padding: 25px;
   display: flex;
-  justify-content: start;
   align-items: center;
+  gap: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
 
-.menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
-  background: none;
+.burger {
+  @media only screen and (max-width: 890px) {
+    display: block;
+  }
+
+  display: none;
+}
+
+.burger svg {
+  fill: #2e186a;
 }
 
 .nav-menu {
@@ -22,11 +33,6 @@
   top: 0;
   left: 0;
   transition: 850ms;
-}
-
-.nav-menu.active {
-  left: 0;
-  transition: 350ms;
 }
 
 .nav-text {
@@ -54,6 +60,11 @@
   background-color: #1a83ff;
 }
 
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
 .nav-menu-items {
   width: 100%;
 }
@@ -69,7 +80,10 @@
   
 }
 
-
+.inactive {
+  display: none;
+  /* atau gaya CSS lainnya untuk menonaktifkan tampilan */
+}
 
 span {
   margin-left: 16px;

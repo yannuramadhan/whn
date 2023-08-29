@@ -7,9 +7,7 @@ const LoginBlock = lazy(() => import("../../components/Backend/LoginBlock"));
 const Login = () => {
   return (
     <>
-    <Container> 
-        <LoginBlock />
-      </Container>
+      <LoginBlock />
    </> 
   );
 };

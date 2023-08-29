@@ -19,10 +19,12 @@ const Articles = () => {
     }, []);
 
     return (
-      <ArtikelContainer>
+      <>
         <Navbar />
-        <ArtikelBlock />
-      </ArtikelContainer>
+          <ArtikelContainer>
+            <ArtikelBlock />
+          </ArtikelContainer>
+      </>
     );
 };
 

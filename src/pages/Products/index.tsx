@@ -18,10 +18,12 @@ const Products = () => {
       }
     }, []);
     return (
-      <ProductContainer>
+      <>
         <Navbar />
-        <ProductBlock />
-      </ProductContainer>
+        <ProductContainer>
+          <ProductBlock />
+        </ProductContainer>
+      </>
     );
 };
 
