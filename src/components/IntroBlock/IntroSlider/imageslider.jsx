@@ -16,7 +16,7 @@ const Dot = styled.div`
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: #ffffff;
+  background-color: #18216d;
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
   margin: 5px;
   transition: 750ms all ease-in-out;
@@ -78,26 +78,31 @@ const ChildrenWrapper = styled.div`
 
 const ImageSlider = ({
   images = [],
-  autoPlay = true,
-  autoPlayTime = 3000,
   children,
+  autoSlideInterval = 3000, 
   ...props
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  function nextSlide(slideIndex = currentSlide + 1) {
-    const newSlideIndex = slideIndex >= images.length ? 0 : slideIndex;
+  useEffect(() => {
+    console.log("Setting up auto-slider interval");
+    const timer = setInterval(() => {
+      console.log("Auto-sliding to the next slide");
+      nextSlide();
+    }, autoSlideInterval);
 
+    return () => {
+      console.log("Clearing auto-slider interval");
+      clearInterval(timer);
+    };
+  }, [currentSlide]);
+
+  function nextSlide(slideIndex = currentSlide + 1) {
+    console.log("Moving to the next slide");
+    const newSlideIndex = slideIndex >= images.length ? 0 : slideIndex;
     setCurrentSlide(newSlideIndex);
   }
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      nextSlide();
-    }, autoPlayTime);
-
-    return () => clearTimeout(timer);
-  }, [currentSlide]);
 
   return (
     <Wrapper>

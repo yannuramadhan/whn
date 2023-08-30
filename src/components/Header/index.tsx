@@ -38,6 +38,9 @@ const Header = ({ t }: any) => {
         <HashLink smooth to="/#product"><Span>{t("Product")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
+        <HashLink smooth to="/articlelist"><Span>{t("Article")}</Span></HashLink>
+        </CustomNavLinkSmall>
+        <CustomNavLinkSmall>
         <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>

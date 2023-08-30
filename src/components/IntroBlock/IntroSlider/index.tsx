@@ -1,35 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ImageSlider from './imageslider';
-
 import image1 from '../../../assets/images/slider/visi.jpg';
-import image2 from '../../../assets/images/slider/produk1.jpg';
-import image3 from '../../../assets/images/slider/produk2.jpg';
-import image4 from '../../../assets/images/slider/artikel1.jpg';
-import image5 from '../../../assets/images/slider/artikel2.jpg';
+
+interface Product {
+  id: string;
+  foto: any;
+  // tambahkan properti lain sesuai kebutuhan
+}
+
+interface Article {
+  id: string;
+  foto: any;
+  // tambahkan properti lain sesuai kebutuhan
+}
 
 const Intro = () => {
-  const vision = { imageUrl: image1, imageLink: "/visionmission" };
-  const produk = [
-    { imageUrl: image2, imageLink: "/productlist" },
-    { imageUrl: image3, imageLink: "/productlist" },
-  ];
+  const [randomProduct, setRandomProduct] = useState('');
+  const [randomArtikel, setRandomArtikel] = useState('');
+  const vision = {"imageUrl":image1,"imageLink":"/visionmission"};
 
-  const artikel = [
-    { imageUrl: image4, imageLink: "/articlelist" },
-    { imageUrl: image5, imageLink: "/articlelist" },
-  ];
-  
-  const randomProdukIndex = Math.floor(Math.random() * produk.length);
-  let randomProduk = produk[randomProdukIndex];
+  useEffect(() => {
+    // Ambil gambar produk
+    axios.get('https://api.whnmandiri.co.id/products')
+      .then(response => {
+        const produkImages = response.data.map((product:Product) => ({
+          imageUrl: `https://api.whnmandiri.co.id/${product.foto}`,
+          imageLink: `/productdetail/${product.id}`,
+        }));
+        const randomProdukIndex = Math.floor(Math.random() * produkImages.length);
+        setRandomProduct(JSON.stringify(produkImages[randomProdukIndex]));
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
 
-  const randomArtikelIndex = Math.floor(Math.random() * artikel.length);
-  let randomArtikel = artikel[randomArtikelIndex];
+    axios.get('https://api.whnmandiri.co.id/articles')
+      .then(response => {
+        const artikelImages = response.data.map((article:Article) => ({
+          imageUrl: `https://api.whnmandiri.co.id/${article.foto}`,
+          imageLink: `/articledetail/${article.id}`,
+        }));
+        const randomArtikelIndex = Math.floor(Math.random() * artikelImages.length);
+        setRandomArtikel(JSON.stringify(artikelImages[randomArtikelIndex]));
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    // ... Ambil gambar artikel ...
+
+  }, []);
 
   return (
     
-    <ImageSlider images={[vision, randomProduk, randomArtikel]}>
+    <ImageSlider images={[vision, randomProduct && JSON.parse(randomProduct), randomArtikel && JSON.parse(randomArtikel)]}>
       {/* Jika Anda ingin menampilkan konten tambahan di bawah slider */}
-      {/* <div
+      <div
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -39,7 +66,7 @@ const Intro = () => {
       >
         <h1>Slider</h1>
         <p></p>
-      </div> */}
+      </div>
     </ImageSlider>
   );
 };

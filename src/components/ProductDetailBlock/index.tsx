@@ -30,6 +30,9 @@ const ProductDetailBlock = ({ title, content, t , id, foto}: ProductDetailProps)
                 <ImageContent src={foto} width="100%" height="auto" />
               </div>
               <Content>{t(content)}</Content>
+              <button type="button">
+                <a href="/productlist"><b>&lt;&lt; Back to Product</b></a>
+              </button>
             </Col>
           </ContentWrapper>
         </Row>

@@ -29,7 +29,7 @@ const MiddleBlock = ({ title, content, t , id, icon}: MiddleBlockProps) => {
               <h6>{t(title)}</h6>
             </Col>
           </ContentWrapper>
-            <Col>
+            <Col lg={24} md={24} sm={24} xs={24}>
               <SvgIcon src={icon} width="70%" height="auto" />
             </Col>
           

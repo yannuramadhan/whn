@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import Partner from "../../content/Partner.json";
-import Header from "../../components/HeaderScrollTo";
+import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useState, useEffect } from "react";
 
