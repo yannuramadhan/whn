@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
-import { SvgIcon } from "../../common/SvgIcon";
 import { HashLink } from 'react-router-hash-link';
+import { SvgIcon } from "../../common/SvgIcon";
 import { Button } from "../../common/Button";
 import {
   HeaderSection,
@@ -19,7 +19,7 @@ import {
   Span,
 } from "./styles";
 
-const HeaderScrollTo = ({ t }: any) => {
+const Header = ({ t }: any) => {
   const [visible, setVisibility] = useState(false);
 
   const showDrawer = () => {
@@ -30,16 +30,18 @@ const HeaderScrollTo = ({ t }: any) => {
     setVisibility(!visible);
   };
 
-  const MenuItem = () => {
-    const scrollTo = (id: string) => {
-      const element = document.getElementById(id) as HTMLDivElement;
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
-      setVisibility(false);
-    };
 
-  return (
+  const scrollUp = () => {
+    const element = document.getElementById("intro") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  };
+
+  const MenuItem = () => {
+    return (
       <>
         <CustomNavLinkSmall >
         <HashLink smooth to="/#about"><Span>{t("About")}</Span></HashLink>
@@ -49,6 +51,9 @@ const HeaderScrollTo = ({ t }: any) => {
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
         <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
+        </CustomNavLinkSmall>
+        <CustomNavLinkSmall>
+        <Link to="/articlelist" onClick={scrollUp} ><Span>{t("Article")}</Span></Link>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
         <HashLink smooth to="/#ourcustomers"><Span>{t("Our Customers")}</Span></HashLink>
@@ -62,25 +67,6 @@ const HeaderScrollTo = ({ t }: any) => {
             </HashLink> 
           </Span>
         </CustomNavLinkSmall>
-        
-        
-        {/* <CustomNavLinkSmall onClick={() => scrollTo("product")}>
-          <Span>{t("Product")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("ourcustomers")}>
-          <Span>{t("Our Customers")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall onClick={() => scrollTo("services")}>
-          <Span>{t("Services")}</Span>
-        </CustomNavLinkSmall>
-        <CustomNavLinkSmall
-          style={{ width: "180px" }}
-          onClick={() => scrollTo("contact")}
-        >
-          <Span>
-            <Button>{t("Contact")}</Button>
-          </Span>
-        </CustomNavLinkSmall> */}
       </>
     );
   };
@@ -117,4 +103,4 @@ const HeaderScrollTo = ({ t }: any) => {
   );
 };
 
-export default withTranslation()(HeaderScrollTo);
+export default withTranslation()(Header);

@@ -24,13 +24,8 @@ export const NavLink = styled("div")`
   text-align: center;
 `;
 
-export const NavLinkDetail = styled(Link)`
-  display: inline-block;
-  text-align: center;
-`;
-
 export const CustomNavLink = styled("div")`
-  width: 203px;
+  width: 100px;
   display: inline-block;
 
   @media only screen and (max-width: 411px) {
@@ -79,7 +74,7 @@ export const CustomNavLinkSmall = styled(NavLink)`
   font-size: 1.2rem;
   color: #18216d;
   transition: color 0.2s ease-in;
-  margin: 0.5rem 1.5rem;
+  margin: 0.5rem 1.1rem;
 
   @media only screen and (max-width: 768px) {
     margin: 1.25rem 2rem;
@@ -96,7 +91,7 @@ export const Label = styled("span")`
 `;
 
 export const Outline = styled(MenuOutlined)<any>`
-  font-size: 22px;
+  font-size: 20px;
 `;
 
 export const Span = styled("span")`
@@ -111,5 +106,3 @@ export const Span = styled("span")`
     text-decoration: rgb(255, 130, 92) wavy underline;
   }
 `;
-
-

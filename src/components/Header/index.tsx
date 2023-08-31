@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
 import Container from "../../common/Container";
@@ -28,6 +29,15 @@ const Header = ({ t }: any) => {
     setVisibility(!visible);
   };
 
+  const scrollUp = () => {
+    const element = document.getElementById("intro") as HTMLDivElement;
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  };
+
   const MenuItem = () => {
     return (
       <>
@@ -38,10 +48,10 @@ const Header = ({ t }: any) => {
         <HashLink smooth to="/#product"><Span>{t("Product")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
-        <HashLink smooth to="/articlelist"><Span>{t("Article")}</Span></HashLink>
+        <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
-        <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
+        <Link to="/articlelist" onClick={scrollUp} ><Span>{t("Article")}</Span></Link>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
         <HashLink smooth to="/#ourcustomers"><Span>{t("Our Customers")}</Span></HashLink>
@@ -63,7 +73,7 @@ const Header = ({ t }: any) => {
     <HeaderSection>
       <Container>
         <Row justify="space-between">
-          <LogoContainer to="/" aria-label="homepage">
+          <LogoContainer to="/" onClick={scrollUp} aria-label="homepage">
             <SvgIcon src="logo.png" width="" height="64px" />
           </LogoContainer>
           <NotHidden>
