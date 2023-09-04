@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Table, Button, Modal, Form, Input, message, Upload } from "antd";
-import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
 import { Slide } from "react-awesome-reveal";
-import { useHistory } from "react-router-dom";
 import {
   ArtikelSection,
   ContentWrapper,
@@ -19,17 +18,17 @@ interface Artikel {
 const UrlArtikel = 'https://api.whnmandiri.co.id/articles';
 
 const Artikel: React.FC = () => {
-  const history = useHistory();
   const [artikel, setArtikel] = useState<Artikel[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<Artikel | null>(null);
   const [form] = Form.useForm();
   const [editForm] = Form.useForm();
+  const storedLoggedInStatus = localStorage.getItem('isLoggedIn');  
+  const accessToken = localStorage.getItem('accessToken');
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (!isLoggedIn) {
+    if (!storedLoggedInStatus && !accessToken) {
       window.location.href = "/login";
     }
     fetchData();
@@ -93,6 +92,7 @@ const Artikel: React.FC = () => {
     editForm.setFieldsValue({
       judul: row.judul,
       deskripsi: row.deskripsi,
+      foto: row.foto,
     });
   };
 

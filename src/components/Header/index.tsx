@@ -51,10 +51,10 @@ const Header = ({ t }: any) => {
         <HashLink smooth to="/#services"><Span>{t("Services")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
-        <Link to="/articlelist" onClick={scrollUp} ><Span>{t("Article")}</Span></Link>
+        <HashLink smooth to="/#ourcustomers"><Span>{t("Our Customers")}</Span></HashLink>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall>
-        <HashLink smooth to="/#ourcustomers"><Span>{t("Our Customers")}</Span></HashLink>
+        <Link to="/articlelist" onClick={scrollUp} ><Span>{t("Articles")}</Span></Link>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "180px" }}

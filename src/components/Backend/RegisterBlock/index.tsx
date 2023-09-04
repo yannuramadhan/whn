@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
   const onFinish = async (values: User) => {
     try {
-      const response = await axios.post('https://api.whnmandiri.co.id/login', {
+      const response = await axios.post('https://api.whnmandiri.co.id:4000/login', {
         username: values.username,
         password: values.password
       });

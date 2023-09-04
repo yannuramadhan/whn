@@ -67,6 +67,8 @@
 
 .nav-menu-items {
   width: 100%;
+  padding-top: 28px;
+  padding-left: 25px;
 }
 
 .navbar-toggle {
@@ -78,6 +80,22 @@
   align-items: center;
 
   
+}
+
+.icon-button {
+  background-color: transparent;
+  /* Menghilangkan latar belakang */
+  border: none;
+  /* Menghilangkan garis tepi */
+  padding: 0;
+  /* Menghilangkan padding */
+  cursor: pointer;
+  /* Mengubah kursor menjadi tangan saat diarahkan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  /* Jarak dari elemen lain di sebelah kanan */
 }
 
 .inactive {

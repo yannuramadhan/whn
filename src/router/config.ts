@@ -35,6 +35,11 @@ const routes = [
     component: "Products",
   },
   {
+    path: ["/dashboard/users"],
+    exact: true,
+    component: "Users",
+  },
+  {
     path: ["/productlist"],
     exact: true,
     component: "ProductList",
