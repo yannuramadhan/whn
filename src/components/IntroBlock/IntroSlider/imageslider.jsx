@@ -85,20 +85,20 @@ const ImageSlider = ({
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    console.log("Setting up auto-slider interval");
+    // console.log("Setting up auto-slider interval");
     const timer = setInterval(() => {
-      console.log("Auto-sliding to the next slide");
+      // console.log("Auto-sliding to the next slide");
       nextSlide();
     }, autoSlideInterval);
 
     return () => {
-      console.log("Clearing auto-slider interval");
+      // console.log("Clearing auto-slider interval");
       clearInterval(timer);
     };
   }, [currentSlide]);
 
   function nextSlide(slideIndex = currentSlide + 1) {
-    console.log("Moving to the next slide");
+    // console.log("Moving to the next slide");
     const newSlideIndex = slideIndex >= images.length ? 0 : slideIndex;
     setCurrentSlide(newSlideIndex);
   }
