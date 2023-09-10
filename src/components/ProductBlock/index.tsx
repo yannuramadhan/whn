@@ -29,7 +29,7 @@ const ProductBlock = ({
     <ProductBlockContainer id={id}>
       <Fade direction="left">
         <Row justify="space-between" align="middle">
-          <Col lg={8} md={11} sm={11} xs={24}>
+          <Col lg={8} md={24} sm={24} xs={24}>
             <ContentWrapper>
               <h6>{t(title)}</h6>
               <Content>{t(content)}</Content>
@@ -38,7 +38,7 @@ const ProductBlock = ({
               </button>
             </ContentWrapper>
           </Col>
-          <Col lg={16} md={14} sm={12} xs={24}>
+          <Col lg={16} md={24} sm={24} xs={24}>
             <SvgIcon src={icon} width="100%" height="100%" />
           </Col>
         </Row>

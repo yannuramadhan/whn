@@ -84,8 +84,8 @@ const Navbar = () => {
                   
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
-                      {item.icon}
-                      <span>{item.title}</span>
+                      <span style={{ marginLeft: '8px' }}>{item.icon}</span>
+                      <span style={{ marginLeft: '8px' }}>{item.title}</span>
                     </Link>
                   </li>
                 );
@@ -93,8 +93,8 @@ const Navbar = () => {
 
               <li className="nav-text">
                 <Link to="#" className="nav-link" onClick={handleLogout}>
-                  <FaIcons.FaDoorOpen />
-                  <span>Logout</span>
+                  <span style={{ marginLeft: '8px' }}><FaIcons.FaDoorOpen /></span>
+                  <span style={{ marginLeft: '8px' }}>Logout</span>
                 </Link>
               </li>
             </ul>
@@ -107,7 +107,7 @@ const Navbar = () => {
               <li className='navbar-toggle'>
                 <SvgIcon src="logo.png" width="" height="55px" />
               </li>
-              
+              <br />
               {SidebarData.map((item, index) => {
                 if (item.title === 'Users' && role !== 'admin') {
                   return null; // Jika peran bukan admin, tidak tampilkan "Articles"
@@ -117,8 +117,8 @@ const Navbar = () => {
                   
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
-                      {item.icon}
-                      <span>{item.title}</span>
+                      <span style={{ marginLeft: '8px' }}>{item.icon}</span>
+                      <span style={{ marginLeft: '8px' }}>{item.title}</span>
                     </Link>
                   </li>
                 );
@@ -126,8 +126,8 @@ const Navbar = () => {
 
               <li className="nav-text">
                 <Link to="#" className="nav-link" onClick={handleLogout}>
-                  <FaIcons.FaDoorOpen />
-                  <span>Logout</span>
+                  <span style={{ marginLeft: '8px' }}><FaIcons.FaDoorOpen /></span>
+                  <span style={{ marginLeft: '8px' }}>Logout</span>
                 </Link>
               </li>
             </ul>

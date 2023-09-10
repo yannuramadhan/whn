@@ -56,7 +56,7 @@ const Intro = () => {
     
     <ImageSlider images={[vision, randomProduct && JSON.parse(randomProduct), randomArtikel && JSON.parse(randomArtikel)]}>
       {/* Jika Anda ingin menampilkan konten tambahan di bawah slider */}
-      <div
+      {/* <div
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -66,7 +66,7 @@ const Intro = () => {
       >
         <h1>Slider</h1>
         <p></p>
-      </div>
+      </div> */}
     </ImageSlider>
   );
 };

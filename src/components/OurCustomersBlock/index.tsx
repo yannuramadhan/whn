@@ -29,10 +29,9 @@ const MiddleBlock = ({ title, content, t , id, icon}: MiddleBlockProps) => {
               <h6>{t(title)}</h6>
             </Col>
           </ContentWrapper>
-            <Col lg={24} md={24} sm={24} xs={24}>
-              <SvgIcon src={icon} width="70%" height="auto" />
+            <Col lg={18} md={22} sm={24} xs={24}>
+              <SvgIcon src={icon} width="100%" height="auto" />
             </Col>
-          
         </Row>
       </Slide>
     </MiddleBlockSection>

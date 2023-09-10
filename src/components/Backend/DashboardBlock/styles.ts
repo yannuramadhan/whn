@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const DashboardSection = styled("section")`
-  background-color: hsl(200, 12%, 80%);
   display: flex;
   justify-content: center; /* Menggunakan space-between untuk menghindari tumpang tindih */
   padding: 5.5rem 8rem 0rem 25rem;

@@ -29,7 +29,7 @@ const ServicesBlock = ({
     <ServicesBlockContainer id={id}>
     <Row justify="space-between" align="middle">          
       <Fade direction="up">
-          <Col lg={15} md={15} sm={15} xs={5}>
+          <Col lg={15} md={15} sm={24} xs={24}>
             <ContentWrapper>
               <h6>{t(title)}</h6>
               <Content>{t(content)}</Content>

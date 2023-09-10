@@ -7,7 +7,7 @@ const IndicatorWrapper = styled.div`
   position: absolute;
   right: 25px;
   bottom: 15px;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     bottom: 5px; // Ubah posisi indikator untuk layar kecil
   }
 `;
@@ -20,7 +20,7 @@ const Dot = styled.div`
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
   margin: 5px;
   transition: 750ms all ease-in-out;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     width: 8px; // Ubah ukuran dot untuk layar kecil
     height: 8px;
     margin: 3px;
@@ -44,17 +44,19 @@ const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
 };
 
 const Wrapper = styled.div`
-  position: relative;
   display: flex;
+  position: relative;
   height: 82.5vh;
   width: 100vw;
-  @media (max-width: 768px) {
+  overflow: hidden;
+  @media (max-width: 1024px) {
     height: 30vh; // Ubah tinggi slider untuk layar kecil
     width: 100vw;
   }
 `;
 
 const Slide = styled.div`
+  display: flex;
   position: relative;
   height: 100%;
   width: 100%;
@@ -63,7 +65,7 @@ const Slide = styled.div`
   background-size: cover;
   transition: 750ms all ease-in-out;
   cursor: pointer; /* Tambahkan cursor pointer saat diarahkan ke slide */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-shrink: 0;
     width: 100%;
   }

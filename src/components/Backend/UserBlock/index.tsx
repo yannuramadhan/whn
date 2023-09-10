@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Table, Button, Modal, Form, Input, message, Upload } from "antd";
+import { Row, Col, Table, Button, Modal, Form, Input, message, Select, Upload } from "antd";
 import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import jwt_decode from "jwt-decode";
 import { Slide } from "react-awesome-reveal";
@@ -19,6 +19,7 @@ interface User {
   name: string;
   email: string;
   role: string;
+  status: string;
   info: any;
 }
 
@@ -86,6 +87,7 @@ const User: React.FC = () => {
 
   const onFinishPost = async (values: User) => {
     try {
+      console.log(values);
       await axios.post(UrlUser, values, {
         headers: {
           'Authorization': `Bearer ${accessToken}`, // Tambahkan header Authorization dengan token bearer
@@ -111,7 +113,7 @@ const User: React.FC = () => {
       role: row.role,
       password: "",
       confPassword: "",
-
+      status: row.status,
     });
   };
 
@@ -165,6 +167,7 @@ const User: React.FC = () => {
     { title: "Name", dataIndex: "name", key: "name" },
     { title: "Email", dataIndex: "email", key: "email" },
     { title: "Role", dataIndex: "role", key: "role" },
+    { title: "Status", dataIndex: "status", key: "status" },
   ];
 
   const columnsWithAction = [...columns, actionColumn];
@@ -172,12 +175,11 @@ const User: React.FC = () => {
   return (
     <> 
       <UserSection>
-        <Slide direction="right">
-          <Row justify="center" align="middle">
-            <ContentWrapper>
+          <Row justify="center">
               <Col lg={24} md={24} sm={24} xs={24}>
-                <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar User</p>
-                <Button onClick={showModal} style={{marginBottom: '10px' }}>Tambah</Button>
+              <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar User</p>
+              <Button onClick={showModal} style={{marginBottom: '10px' }}>Tambah</Button>
+              <ContentWrapper>
                 <Table dataSource={user} columns={columnsWithAction}  />
                 <Modal
                   title="Tambah User"
@@ -207,7 +209,10 @@ const User: React.FC = () => {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Role" name="role">
-                      <Input />
+                      <Select>
+                        <Select.Option value="admin">admin</Select.Option>
+                        <Select.Option value="user">user</Select.Option>
+                      </Select>
                     </Form.Item>
                     <Form.Item label="Password" name="password">
                       <Input />
@@ -236,6 +241,7 @@ const User: React.FC = () => {
                       role: selectedUser?.role,
                       password: "",
                       confPassword:"",
+                      status: selectedUser?.status,
                     }}
                   >
                     <Form.Item label="Username" name="username">
@@ -248,7 +254,10 @@ const User: React.FC = () => {
                       <Input />
                     </Form.Item>
                     <Form.Item label="Role" name="role">
-                      <Input />
+                      <Select>
+                        <Select.Option value="admin">admin</Select.Option>
+                        <Select.Option value="user">user</Select.Option>
+                      </Select>
                     </Form.Item>
                     <Form.Item label="Password" name="password">
                       <Input />
@@ -256,15 +265,20 @@ const User: React.FC = () => {
                     <Form.Item label="Confirm Password" name="confPassword">
                       <Input />
                     </Form.Item>
+                    <Form.Item label="Status" name="status">
+                      <Select>
+                        <Select.Option value="Y">Y</Select.Option>
+                        <Select.Option value="N">N</Select.Option>
+                      </Select>
+                    </Form.Item>
                     <Button type="primary" htmlType="submit">
                       Simpan
                     </Button>
                   </Form>
                 </Modal>
+              </ContentWrapper>
               </Col>
-            </ContentWrapper>
           </Row>
-        </Slide>
       </UserSection>
     </>
   );

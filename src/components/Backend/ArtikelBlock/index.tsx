@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Table, Button, Modal, Form, Input, message, Upload } from "antd";
+import { Row, Col, Table, Button, Modal, Form, Input, message, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { Slide } from "react-awesome-reveal";
 import {
@@ -12,6 +12,7 @@ interface Artikel {
   judul: string;
   deskripsi: string;
   foto: any;
+  status: string;
   info: any;
 }
 
@@ -93,6 +94,7 @@ const Artikel: React.FC = () => {
       judul: row.judul,
       deskripsi: row.deskripsi,
       foto: row.foto,
+      status: row.status,
     });
   };
 
@@ -102,6 +104,7 @@ const Artikel: React.FC = () => {
       formData.append("judul", values.judul);
       formData.append("deskripsi", values.deskripsi);
       formData.append("foto", values.foto.file);
+      formData.append("status", values.status);
 
       await fetch(UrlArtikel+`/${selectedArticle?.id}`, {
         method: 'PUT',
@@ -150,6 +153,7 @@ const Artikel: React.FC = () => {
     { title: "Judul", dataIndex: "judul", key: "judul" },
     { title: "Deskripsi", dataIndex: "deskripsi", key: "deskripsi" },
     { title: "Foto", dataIndex: "foto", key: "foto" },
+    { title: "Status", dataIndex: "status", key: "status" },
   ];
 
   const columnsWithAction = [...columns, actionColumn];
@@ -157,12 +161,11 @@ const Artikel: React.FC = () => {
   return (
     <> 
       <ArtikelSection>
-        <Slide direction="right">
-          <Row justify="center" align="middle">
-            <ContentWrapper>
+          <Row justify="center">
               <Col lg={24} md={24} sm={24} xs={24}>
-                <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar Article</p>
-                <Button onClick={showModal} style={{marginBottom: '10px' }}>Tambah</Button>
+              <p style={{textAlign: 'center', marginBottom: '16px' }}>Daftar Article</p>
+              <Button onClick={showModal} style={{marginBottom: '10px' }}>Tambah</Button>
+              <ContentWrapper>
                 <Table dataSource={artikel} columns={columnsWithAction}  />
                 <Modal
                   title="Tambah Article"
@@ -218,6 +221,7 @@ const Artikel: React.FC = () => {
                       judul: selectedArticle?.judul,
                       deskripsi: selectedArticle?.deskripsi,
                       foto: selectedArticle?.foto,
+                      status: selectedArticle?.status,
                     }}
                   >
                     <Form.Item label="Judul" name="judul">
@@ -241,15 +245,20 @@ const Artikel: React.FC = () => {
                         <Button icon={<UploadOutlined />}>Pilih Gambar</Button>
                       </Upload>
                     </Form.Item>
+                    <Form.Item label="Status" name="status">
+                      <Select>
+                        <Select.Option value="Y">Y</Select.Option>
+                        <Select.Option value="N">N</Select.Option>
+                      </Select>
+                    </Form.Item>
                     <Button type="primary" htmlType="submit">
                       Simpan
                     </Button>
                   </Form>
                 </Modal>
-              </Col>
             </ContentWrapper>
+            </Col>
           </Row>
-        </Slide>
       </ArtikelSection>
     </>
   );

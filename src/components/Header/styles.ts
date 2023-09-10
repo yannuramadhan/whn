@@ -7,7 +7,7 @@ export const HeaderSection = styled("header")`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: aliceblue;
+  background: rgb(235, 244, 243);
 
   .ant-row-space-between {
     align-items: center;
@@ -47,7 +47,7 @@ export const ContactWrapper = styled("div")<any>`
 `;
 
 export const Burger = styled("div")`
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1024px) {
     display: block;
   }
 
@@ -59,7 +59,7 @@ export const Burger = styled("div")`
 `;
 
 export const NotHidden = styled("div")`
-  @media only screen and (max-width: 890px) {
+  @media only screen and (max-width: 1024px) {
     display: none;
   }
 `;

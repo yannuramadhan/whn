@@ -34,16 +34,17 @@ const Dashboard: React.FC = () => {
   return (
     <> 
       <DashboardSection>
-        <Slide direction="right">
-          <Row justify="center" align="middle">
+          <Row justify="center">
             <ContentWrapper>
               <Col lg={24} md={24} sm={24} xs={24}>
-                <p>Haloooo... {name}</p>
-                <p>Selamat datang di Dashboard!</p>
+                <br/>
+                <br/>
+                <br/>
+                <p style={{textAlign: 'center', marginBottom: '16px' }}>Hallo!! {name}</p>
+                <p style={{textAlign: 'center', marginBottom: '16px' }}>Welcome To Dashboard</p>
               </Col>
             </ContentWrapper>
           </Row>
-        </Slide>
       </DashboardSection>
     </>
   );

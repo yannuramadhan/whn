@@ -11,7 +11,7 @@ const IntroBlock = lazy(() => import("../../components/IntroBlock/IntroContentBl
 const ProductListBlock = lazy(() => import("../../components/ProductListBlock"));
 
 const ProductList = () => {
-  const [product, setProduct] = useState<{ id: number; judul: string; deskripsi: string; foto: string}[]>([]);
+  const [product, setProduct] = useState<{ id: number; judul: string; deskripsi: string; foto: string; status: string}[]>([]);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -24,7 +24,8 @@ const ProductList = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setProduct(data);
+        const filteredProducts = data.filter((item: { id: number; judul: string; deskripsi: string; foto: string; status: string }) => item.status === 'Y');
+        setProduct(filteredProducts);
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []);

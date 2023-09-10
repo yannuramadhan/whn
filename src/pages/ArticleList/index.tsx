@@ -13,7 +13,7 @@ const IntroBlock = lazy(() => import("../../components/IntroBlock/IntroContentBl
 const ArtikelListBlock = lazy(() => import("../../components/ArtikelListBlock"));
 
 const ArtikelList = () => {
-  const [artikel, setArtikel] = useState<{ id: number; judul: string; deskripsi: string; foto: string}[]>([]);
+  const [artikel, setArtikel] = useState<{ id: number; judul: string; deskripsi: string; foto: string; status: string}[]>([]);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -26,7 +26,8 @@ const ArtikelList = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setArtikel(data);
+        const filteredArticles = data.filter((item: { id: number; judul: string; deskripsi: string; foto: string; status: string }) => item.status === 'Y');
+        setArtikel(filteredArticles);
       })
       .catch(error => console.error('Error fetching data:', error));
   }, []);
@@ -47,7 +48,7 @@ const ArtikelList = () => {
         <Container>
           <ScrollToTop />
           <div>
-            {artikel.map(item => (
+            {artikel.map(item => (  
               <ArtikelListBlock
                 key={item.id}
                 type="left"
